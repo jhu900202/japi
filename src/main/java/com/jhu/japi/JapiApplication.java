@@ -1,4 +1,4 @@
-package com.japi.japi;
+package com.jhu.japi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
