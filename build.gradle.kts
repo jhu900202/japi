@@ -27,7 +27,12 @@ repositories {
 
 dependencies {
   implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-  implementation("org.springframework.boot:spring-boot-starter-web")
+  implementation("org.springframework.boot:spring-boot-starter-web"){
+    exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging") // Logback 제외
+  }
+  implementation("org.springframework.boot:spring-boot-starter-log4j2") // Log4j2 사용
+  implementation("org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16") // SQL 로깅 프록시
+
   compileOnly("org.projectlombok:lombok")
   developmentOnly("org.springframework.boot:spring-boot-devtools")
   runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
