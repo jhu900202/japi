@@ -1,3 +1,5 @@
+# TODO: 이거 되는지 확인
+
 # Java 24 지원을 위한 베이스 이미지 (현재 프리뷰)
 FROM openjdk:24-jdk-slim
 
