@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  # Spring Boot 애플리케이션
+  japi-app:
+    build: .
+    container_name: japi-application
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - JAVA_OPTS=-Xms1g -Xmx2g -Djava.net.preferIPv4Stack=true
+      - DB_URL=${DB_URL}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+    depends_on:
+      - mariadb
+    networks:
+      - japi-network
+    restart: unless-stopped
+
+  # MariaDB 데이터베이스
+  mariadb:
+    image: mariadb:11
+    container_name: japi-database
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - japi-network
+    restart: unless-stopped
+
+networks:
+  japi-network:
+    driver: bridge
+
+volumes:
+  mariadb_data:
+    driver: local
