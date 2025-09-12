@@ -32,3 +32,44 @@ Configuration:
         AppenderRef:
           - ref: LogToConsole
           - ref: LogToRollingFile
+          - name: jdbc.sqlonly           # 실행된 SQL만 (바인딩된 값 포함)
+            level: debug
+            additivity: false
+            AppenderRef:
+              - ref: LogToConsole
+              - ref: LogToRollingFile
+
+          - name: jdbc.sqltiming         # SQL + 실행 시간
+            level: debug
+            additivity: false
+            AppenderRef:
+              - ref: LogToConsole
+              - ref: LogToRollingFile
+
+          - name: jdbc.resultsettable    # ResultSet 테이블 형태 출력(매우 장문)
+            level: debug                 # 필요할 때만 debug로 올리세요. 기본은 off/error 권장
+            additivity: false
+            AppenderRef:
+              - ref: LogToConsole
+              - ref: LogToRollingFile
+
+          - name: jdbc.audit             # 커넥션/준비/닫기 등 감사 로그
+            level: info                  # 필요에 따라 debug로
+            additivity: false
+            AppenderRef:
+              - ref: LogToConsole
+              - ref: LogToRollingFile
+
+          - name: jdbc.resultset         # ResultSet 내용 전체(매우 시끄러움)
+            level: error                 # 보통 비활성화
+            additivity: false
+            AppenderRef:
+              - ref: LogToConsole
+              - ref: LogToRollingFile
+
+          - name: jdbc.connection        # 커넥션 오픈/클로즈 등
+            level: error                 # 필요 시 info/debug
+            additivity: false
+            AppenderRef:
+              - ref: LogToConsole
+              - ref: LogToRollingFile
