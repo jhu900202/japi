@@ -1,0 +1,34 @@
+Configuration:
+  status: warn
+  Appenders:
+    Console:
+      name: LogToConsole
+      PatternLayout:
+        pattern: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - [%X{testMethod:-}] %msg%n"
+        charset: UTF-8
+    RollingFile:
+      name: LogToRollingFile
+      fileName: C:\\Users\\jhu90\\logs\\application.log
+      filePattern: C:\\Users\\jhu90\\logs\\${date:yyyyMM}\\%d{yyyyMMdd}-application-%03i.log.zip
+      PatternLayout:
+        pattern: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - [%X{testMethod:-}] %msg%n"
+        charset: UTF-8
+      Policies:
+        SizeBasedTriggeringPolicy:
+          size: 10MB
+        TimeBasedTriggeringPolicy: {}
+      DefaultRolloverStrategy:
+        max: 1000
+  Loggers:
+    Root:
+      level: warn
+      AppenderRef:
+        - ref: LogToConsole
+        - ref: LogToRollingFile
+    Logger:
+      - name: com.jhu.japi
+        level: debug
+        additivity: false
+        AppenderRef:
+          - ref: LogToConsole
+          - ref: LogToRollingFile
