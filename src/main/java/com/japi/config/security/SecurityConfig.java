@@ -1,5 +1,6 @@
 package com.japi.config.security;
 
+import com.japi.config.authentication.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
