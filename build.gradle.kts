@@ -26,7 +26,7 @@ repositories {
 }
 
 dependencies {
-  implementation("org.springframework.boot:spring-boot-starter-web"){
+  implementation("org.springframework.boot:spring-boot-starter-web") {
     exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging") // Logback 제외
   }
   implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -40,9 +40,10 @@ dependencies {
   implementation("jakarta.annotation:jakarta.annotation-api:3.0.0")
   implementation("jakarta.persistence:jakarta.persistence-api:3.2.0")
 
-  implementation("com.querydsl:querydsl-jpa:5.1.0:jakarta") // 쿼리DSL
+  implementation("io.github.openfeign.querydsl:querydsl-jpa:7.0")// 쿼리DSL
 
   compileOnly("org.projectlombok:lombok")
+
   developmentOnly("org.springframework.boot:spring-boot-devtools")
   runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
 
@@ -53,6 +54,13 @@ dependencies {
 
   testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation("org.springframework.security:spring-security-test")
+  testImplementation("org.junit.jupiter:junit-jupiter")
+  testImplementation("org.junit.platform:junit-platform-suite")
+  testImplementation("org.mockito:mockito-core")
+
+  testCompileOnly("org.projectlombok:lombok")
+  testAnnotationProcessor("org.projectlombok:lombok")
+
 
   testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
