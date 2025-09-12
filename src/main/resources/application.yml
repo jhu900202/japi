@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: japi
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+  datasource:
+    url: ${DB_URL:jdbc:h2:mem:testdb}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:}
+    driver-class-name: ${DB_DRIVER:org.h2.Driver}
+
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 30m
+  error:
+    whitelabel:
+      enabled: false
+    include-exception: true
+    include-stacktrace: always
+
+jwt:
+  secret: ${JWT_SECRET_KEY:default-dev-secret}
+  expiration: ${JWT_EXPIRATION:86400000}
+
+logging:
+  level:
+    config: classpath:log4j2.yml
